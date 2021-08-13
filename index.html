@@ -1,7 +1,234 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+	<head>
+		<title>Anime Bookshelf</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link rel="icon" href="images/avatar.jpg">
+		<script>
+			var xmlFile = 'https://raw.githubusercontent.com/olayenca/externals/master/XMLParse.xml';
+			var file = "https://raw.githubusercontent.com/brutaline83/anime/main/test.xml";
+			function loadDoc() {
+			  var xhttp = new XMLHttpRequest();
+
+			  xhttp.open("GET", file, true);
+			  xhttp.send();
+			  xhttp.onreadystatechange = function() {
+				  xmlFunction(this.response);
+			  };
+
+			}
+
+			function xmlFunction(xml) {
+			  var parser = new DOMParser();
+			  var xmlDoc = parser.parseFromString(xml, "text/xml");
+			  var table = "<div class='row'>"; //subcategory heading
+			  var x = xmlDoc.getElementsByTagName("ITEM");
+			  for (var elem of x) {
+				var titles = elem.getElementsByTagName("TITLE")[0].childNodes[0].nodeValue;
+				var imgs  = 'images\\'+elem.getElementsByTagName("IMG")[0].childNodes[0].nodeValue;
+				var links = elem.getElementsByTagName("LINK")[0].childNodes[0].nodeValue;
+				
+				table += "<div class='col-4 col-12-mobile'><article class='item'>";
+				table += "<a href='" + links + "' target='_blank' class='image fit'>";
+				table += "<img style='width:10em' src='" + imgs + "' alt=''/></a>";
+				table += "<header><h3> " + titles + " </h3></header></article></div>";
+			  }
+			  table += "</div>";
+			  document.getElementById("bookshelf").innerHTML = table;
+			}
+			loadDoc();
+		</script>
+	</head>
+	<body class="is-preload">
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+							<h1 id="title">Anime Bookshelf</h1>
+							<p>Garder ses animes sous la main</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="#top" id="top-link"><span class="icon solid fa-home">Accueil</span></a></li>
+								<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Bookshelf</span></a></li>
+								<li><a href="#about" id="about-link"><span class="icon solid fa-user">Un nouvel anime ?</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+					<!-- Social Icons -->
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+							<header>
+								<h2 class="alt">Bonjour ! <br/>Grace à <strong>Bookshelf</strong>, nous allons pouvoir conserver une liste des animes que l'on regarde sur <a href="https://voiranime.com/" target="_blank">voiranime.com</a>.<br />
+							</header>
+
+							<footer>
+								<a href="#portfolio" class="button scrolly">Voir la liste</a><br/><br/>
+								<a href="#about" class="button scrolly">Ajouter un anime</a>
+							</footer>
+
+						</div>
+					</section> 
+
+				<!-- Portfolio -->
+					<section id="portfolio" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Bookshelf</h2>
+							</header>
+
+							<p>Voici la liste des animes que l'on suit :)</p>
+							
+							<div id="bookshelf">
+							</div>
+							
+							<!--<div class="row">
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="https://voiranime.com/anime/boku-no-hero-academia-4-vf/" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+										<header>
+											<h3>Ipsum Feugiat</h3>
+										</header>
+									</article>
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+										<header>
+											<h3>Rhoncus Semper</h3>
+										</header>
+									</article>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+										<header>
+											<h3>Magna Nullam</h3>
+										</header>
+									</article>
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+										<header>
+											<h3>Natoque Vitae</h3>
+										</header>
+									</article>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+										<header>
+											<h3>Dolor Penatibus</h3>
+										</header>
+									</article>
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+										<header>
+											<h3>Orci Convallis</h3>
+										</header>
+									</article>
+								</div>
+							</div>-->
+
+						</div>
+					</section>
+
+				<!-- About Me -->
+					<section id="about" class="three">
+						<div class="container">
+
+							<header>
+								<h2>Un nouvel anime ?</h2>
+							</header>
+							
+							<p>Modifier ce fichier : </p>
+							<a href="https://github.com/brutaline83/anime/blob/main/test.xml" class="image featured" target="_blank"><img src="images/pic08.jpg" alt="" />Lien GitHub</a>
+
+						</div>
+					</section>
+
+				<!-- Contact 
+					<section id="contact" class="four">
+						<div class="container">
+
+							<header>
+								<h2>Contact</h2>
+							</header>
+
+							<p>Elementum sem parturient nulla quam placerat viverra
+							mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia
+							donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc
+							orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
+
+							<form method="post" action="#">
+								<div class="row">
+									<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
+									<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
+									<div class="col-12">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+									<div class="col-12">
+										<input type="submit" value="Send Message" />
+									</div>
+								</div>
+							</form>
+
+						</div>
+					</section>-->
+
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
