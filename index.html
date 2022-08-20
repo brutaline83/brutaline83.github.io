@@ -15,17 +15,18 @@
 		<script>
 			var xmlFile = 'https://raw.githubusercontent.com/olayenca/externals/master/XMLParse.xml';
 			var file = "https://raw.githubusercontent.com/brutaline83/anime/main/test.xml";
-			function loadDoc() {
+			var mangaFile = "https://raw.githubusercontent.com/brutaline83/anime/main/mangaPapier.xml";
+			function loadDoc(fileName) {
 			  var xhttp = new XMLHttpRequest();
 
-			  xhttp.open("GET", file, true);
+			  xhttp.open("GET", fileName, true);
 			  xhttp.send();
 			  xhttp.onreadystatechange = function() {
 				  xmlFunction(this.response);
 			  };
 
 			}
-
+			
 			function xmlFunction(xml) {
 			  var parser = new DOMParser();
 			  var xmlDoc = parser.parseFromString(xml, "text/xml");
@@ -44,7 +45,8 @@
 			  table += "</div>";
 			  document.getElementById("bookshelf").innerHTML = table;
 			}
-			loadDoc();
+			loadDoc("file");
+			loadDoc("mangaFile");
 		</script>
 	</head>
 	<body class="is-preload">
