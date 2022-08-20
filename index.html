@@ -19,7 +19,7 @@
 			function loadDoc(f, fName) {
 			  var xhttp = new XMLHttpRequest();
 
-			  xhttp.open("GET", fileName, true);
+			  xhttp.open("GET", f, true);
 			  xhttp.send();
 			  xhttp.onreadystatechange = function() {
 				  xmlFunction(this.response, fName);
